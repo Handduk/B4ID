@@ -2,7 +2,7 @@ export const Navbar = () => {
   return (
     <div className="w-screen h-16 bg-yellow-400 sticky top-0 flex flex-row items-center shadow-md">
       <div className="ms-10">
-        <a href="/">Before I Die</a>
+        <a href="/setup">Before I Die</a>
       </div>
       <div className="ms-auto">
         <p className="text-2xl">
