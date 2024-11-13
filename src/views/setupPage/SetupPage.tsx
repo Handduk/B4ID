@@ -137,59 +137,6 @@ export const changeGoalsList = (
 };
 
 export const SetupPage = () => {
-  const preList = [
-    "1. Bake a signature dessert and share the recipe online.",
-    "2. Create a blog showcasing your baking creations.",
-    "3. Host a baking workshop for friends and family.",
-    "4. Participate in a baking competition.",
-    "5. Design a custom cake for a special occasion.",
-    "6. Get featured in a local magazine for your baking skills.",
-    "7. Start a YouTube channel dedicated to baking tutorials.",
-    "8. Offer baking classes in your community.",
-    "9. Collaborate with a local café to feature your baked goods.",
-    "10. Write a baking e-book with your favorite recipes.",
-    "11. Attend a culinary school to earn a baking certification.",
-    "12. Start a baking business from home and sell your treats online.",
-    "13. Create an Instagram page focusing on your baking journey.",
-    "14. Join a baking club or community group.",
-    "15. Host a baking-themed party or event.",
-    "16. Learn to bake with alternative ingredients (gluten-free, vegan, etc.).",
-    "17. Develop your own line of baking products.",
-    "18. Get featured on a baking or lifestyle TV show.",
-    "19. Attend a cooking convention to network and learn.",
-    "20. Set a goal to bake a new recipe every week for a year.",
-    "21. Master the art of bread making.",
-    "22. Build a website to promote your baking business.",
-    "23. Participate in charity bake sales or events.",
-    "24. Get married and bake your own wedding cake.",
-    "25. Learn the science of baking through a formal course.",
-    "26. Start a baking podcast discussing recipes and techniques.",
-    "27. Create a baking challenge with friends or family.",
-    "28. Travel to different countries to learn about their baking traditions.",
-    "29. Explore pairing desserts with wines or coffees.",
-    "30. Become a certified pastry chef.",
-    "31. Master chocolate tempering and create gourmet chocolates.",
-    "32. Design a bakery logo and branding for your business.",
-    "33. Host a baking competition among friends.",
-    "34. Volunteer your baking skills at a local shelter or charity.",
-    "35. Develop a unique baking style that reflects your personality.",
-    "36. Create seasonal baked goods for holidays and events.",
-    "37. Publish your own baking magazine showcasing local bakers.",
-    "38. Learn food photography to enhance your baking presentations.",
-    "39. Create a line of baking-themed merchandise (aprons, tools, etc.).",
-    "40. Mentor someone interested in baking.",
-    "41. Write articles for baking forums or websites.",
-    "42. Host virtual baking classes for a broader audience.",
-    "43. Start a baking delivery service for events and parties.",
-    "44. Explore healthy baking alternatives and create a cookbook.",
-    "45. Learn to bake croissants and other French pastries.",
-    "46. Host an annual baking festival in your community.",
-    "47. Start a subscription box service for your baked goods.",
-    "48. Create a nonprofit baking initiative to teach youth baking skills.",
-    "49. Offer customized baking services for special dietary needs.",
-    "50. Build a successful online presence and community around baking.",
-  ];
-
   const [interestList, setInterestList] = useState<string[]>([]);
   const [goalsList, setGoalsList] = useState<string[]>([]);
   const [bucketList, setBucketList] = useState<Item[]>([]);
@@ -292,7 +239,7 @@ export const SetupPage = () => {
                     </div>
                   </div>
                   <div className="w-full h-[calc(100%-1.5rem)] overflow-auto mt-5">
-                    <div className="w-full h-[calc(135%)] flex flex-col flex-wrap max-laptop:text-lg max-laptop:items-center max-laptop:flex-nowrap tablet:flex-wrap max-laptop:h-[calc(350%)]">
+                    <div className="w-full h-[calc(155%)] flex flex-col flex-wrap max-laptop:text-lg max-laptop:items-center max-laptop:flex-nowrap tablet:flex-wrap max-laptop:h-[calc(350%)]">
                       {InterestList.map((res, index) => {
                         return (
                           <div
@@ -333,7 +280,7 @@ export const SetupPage = () => {
                     </div>
                   </div>
                   <div className="w-full h-[calc(100%-2.8rem)] overflow-auto mt-4">
-                    <div className="w-full h-[calc(110%)] flex flex-col flex-wrap max-laptop:text-lg max-laptop:items-center max-laptop:flex-nowrap tablet:flex-wrap max-laptop:h-[calc(300%)]">
+                    <div className="w-full h-[calc(130%)] flex flex-col flex-wrap max-laptop:text-lg max-laptop:items-center max-laptop:flex-nowrap tablet:flex-wrap max-laptop:h-[calc(300%)]">
                       {LifeGoalsList.map((res, index) => {
                         return (
                           <div
