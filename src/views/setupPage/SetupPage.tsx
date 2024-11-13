@@ -198,13 +198,19 @@ export const SetupPage = () => {
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [done, setDone] = useState<boolean>(false);
+  const [noGoals, setNoGoals] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsDisabled(interestList.length === 0 && goalsList.length === 0);
+    setIsDisabled(!(interestList.length >= 5 && goalsList.length >= 5));
   }, [interestList, goalsList]);
+
+  useEffect(() => {
+    setIsDisabled(!(interestList.length >= 5 && noGoals));
+  }, [interestList, noGoals]);
 
   const generateList = async () => {
     setIsGenerating(true);
+    setIsDisabled(true);
     const response = await generateBucketList(interestList, goalsList, "50");
     const data = response.content;
     if (data) {
@@ -222,6 +228,11 @@ export const SetupPage = () => {
       });
     }
     setIsGenerating(false);
+    setIsDisabled(false);
+  };
+
+  const saveList = () => {
+    console.log("list saved");
   };
 
   const isDone = (item: Item) => {
@@ -254,7 +265,7 @@ export const SetupPage = () => {
       <div
         className={`${
           bucketList.length > 0 ? "h-5/6 flex-col" : "h-5/6"
-        } w-5/6 bg-neutral-50 dark:bg-neutral-900 rounded-xl shadow-lg flex justify-center items-center p-6`}
+        } w-5/6 bg-neutral-50 dark:bg-neutral-900 rounded-xl shadow-lg flex justify-center items-center p-6 max-laptop:w-full max-laptop:rounded-none max-laptop:flex-col transition-all duration-300`}
       >
         {bucketList.length <= 0 ? (
           <>
@@ -267,32 +278,35 @@ export const SetupPage = () => {
               </div>
             ) : (
               <>
-                <span className="h-full w-5/12 flex flex-col border-r-2">
-                  <div className="w-full text-3xl flex flex-col">
-                    <header className="mb-2">
-                      <strong className="underline underline-offset-8">
+                <span className="interests h-full w-5/12 flex flex-col border-r-2 max-laptop:h-1/2 max-laptop:w-full max-laptop:border-none">
+                  <div className="w-full text-3xl flex flex-col max-tablet:text-2xl">
+                    <header className="mb-2 max-laptop:flex max-laptop:justify-center transition-all duration-300">
+                      <strong className="text-yellow-400 underline underline-offset-8">
                         Choose your preferences.
                       </strong>
                     </header>
                     <div>
-                      <strong className="text-xl">Interests:</strong>
+                      <strong className="text-xl max-tablet:text-lg transition-all duration-300">
+                        Interests:
+                      </strong>
                     </div>
                   </div>
                   <div className="w-full h-[calc(100%-1.5rem)] overflow-auto mt-5">
-                    <div className="w-full h-[calc(135%)] flex flex-col flex-wrap space-y-1">
+                    <div className="w-full h-[calc(135%)] flex flex-col flex-wrap max-laptop:text-lg max-laptop:items-center max-laptop:flex-nowrap tablet:flex-wrap max-laptop:h-[calc(350%)]">
                       {InterestList.map((res, index) => {
                         return (
                           <div
                             key={`interest-${index}`}
-                            className="w-48 flex justify-between"
+                            className="w-5/12 flex justify-between my-1 hover:text-yellow-500 transition-colors duration-300 max-laptop:w-full tablet:w-1/2"
                           >
                             <label
                               htmlFor={`interest-${index.toString()}`}
-                              className="w-full"
+                              className="w-full cursor-pointer tablet:w-5/6"
                             >
                               {res}
                             </label>
                             <input
+                              className="cursor-pointer me-5"
                               type="checkbox"
                               id={`interest-${index.toString()}`}
                               value={res}
@@ -310,27 +324,30 @@ export const SetupPage = () => {
                     </div>
                   </div>
                 </span>
-                <span className="h-full w-7/12 pt-12 ms-6">
-                  <div className="w-full text-3xl flex flex-col overflow-auto">
+                <span className="goals h-full w-7/12 pt-14 ms-6 max-laptop:ms-0 max-laptop:pt-6 max-laptop:h-1/2 max-laptop:w-full">
+                  <div className="w-full flex flex-col overflow-auto">
                     <div>
-                      <strong className="text-xl">Goals:</strong>
+                      <strong className="text-xl max-tablet:text-lg transition-all duration-300">
+                        Goals:
+                      </strong>
                     </div>
                   </div>
-                  <div className="w-full h-[calc(100%-3.5rem)] overflow-auto mt-4">
-                    <div className="w-full h-[calc(110%)] flex flex-col flex-wrap space-y-1">
+                  <div className="w-full h-[calc(100%-2.8rem)] overflow-auto mt-4">
+                    <div className="w-full h-[calc(110%)] flex flex-col flex-wrap max-laptop:text-lg max-laptop:items-center max-laptop:flex-nowrap tablet:flex-wrap max-laptop:h-[calc(300%)]">
                       {LifeGoalsList.map((res, index) => {
                         return (
                           <div
                             key={`lifeGoal-${index}`}
-                            className="w-5/12 flex justify-between"
+                            className="w-5/12 flex justify-between my-1 hover:text-yellow-500 transition-colors duration-300 max-laptop:w-full tablet:w-1/2"
                           >
                             <label
                               htmlFor={`lifeGoal-${index.toString()}`}
-                              className="w-full"
+                              className="w-full cursor-pointer tablet:w-5/6"
                             >
                               {res}
                             </label>
                             <input
+                              className="cursor-pointer me-5"
                               type="checkbox"
                               id={`lifeGoal-${index.toString()}`}
                               value={res}
@@ -341,6 +358,24 @@ export const SetupPage = () => {
                           </div>
                         );
                       })}
+                      <div
+                        className={`w-5/12 flex justify-between hover:text-yellow-500 transition-colors duration-300 max-laptop:w-full tablet:w-1/2`}
+                      >
+                        <label
+                          htmlFor={`lifeGoal-noGoals`}
+                          className="w-full cursor-pointer tablet:w-5/6"
+                        >
+                          <b>I dont have any goals</b>
+                        </label>
+                        <input
+                          className="cursor-pointer disabled:cursor-default me-5"
+                          type="checkbox"
+                          disabled={goalsList.length ? true : false}
+                          id={`lifeGoal-noGoals`}
+                          value="I dont have any goals"
+                          onChange={() => setNoGoals(!noGoals)}
+                        />
+                      </div>
                     </div>
                   </div>
                 </span>
@@ -350,26 +385,26 @@ export const SetupPage = () => {
         ) : (
           <>
             <div className="w-full h-full overflow-hidden">
-              <div className="w-full h-fit flex justify-center my-4">
+              <div className="w-full h-fit flex justify-center my-4 max-laptop:my-0 max-laptop:mb-4">
                 <header>
                   <strong className="text-xl">
                     Your generated bucket list
                   </strong>
                 </header>
               </div>
-              <div className="w-full h-full">
-                <ol className="w-full h-full flex flex-col space-y-2 overflow-auto pb-16 px-2">
+              <div className="w-full h-full max-tablet:h-[calc(100%-3rem)]">
+                <ol className="w-full h-full flex flex-col space-y-2 overflow-y-auto px-2 max-tablet:px-0">
                   {bucketList.map((res) => (
                     <div
                       key={res.id}
-                      className="w-full flex rounded-md bg-neutral-300 dark:bg-neutral-800"
+                      className="w-full flex rounded-md bg-neutral-300 dark:bg-neutral-800 max-tablet:min-h-32"
                     >
-                      <div className="w-2/3 flex items-center ps-6">
+                      <div className="w-2/3 h-full flex items-center ps-6">
                         <li>{res.content}</li>
                       </div>
-                      <div className="w-1/3 h-full flex justify-end space-x-6 items-center">
+                      <div className="w-1/3 h-full flex justify-end space-x-6 items-center max-tablet:w-2/4 max-tablet:space-x-2 max-tablet:me-3">
                         <div>
-                          <label className="relative inline-flex items-center cursor-pointer">
+                          <label className="relative inline-flex items-center cursor-pointer max-tablet:me-2 max-tablet:mt-1">
                             <input
                               type="checkbox"
                               checked={res.done}
@@ -381,7 +416,8 @@ export const SetupPage = () => {
                             peer-checked:after:translate-x-full peer-checked:after:border-neutral-50 dark:peer-checked:after:border-neutral-800 after:content-[''] 
                             after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-50 dark:after:bg-neutral-800 after:border-neutral-200 dark:after:border-neutral-800 
                             after:border after:rounded-full after:h-4 after:w-4 after:transition-all 
-                            peer-checked:bg-yellow-500 hover:peer-checked:bg-yellow-600 dark:hover:peer-checked:bg-yellow-300"
+                            peer-checked:bg-yellow-500 hover:peer-checked:bg-yellow-600 dark:hover:peer-checked:bg-yellow-300
+                            "
                             ></div>
                           </label>
                         </div>
@@ -400,17 +436,22 @@ export const SetupPage = () => {
           </>
         )}
       </div>
-      <div className={`${bucketList.length > 0 ? "hidden" : "visible"} mt-5`}>
+      <div className="mt-5">
         <button
           className="w-48 h-16 border border-neutral-900 rounded-lg bg-yellow-500 text-neutral-900 shadow-none 
          hover:text-neutral-800 hover:shadow-lg hover:shadow-yellow-500/10 transition-all duration-300
         disabled:bg-transparent disabled:hover:text-neutral-900 disabled:hover:shadow-none"
-          onClick={() => generateList()}
+          onClick={() => {
+            bucketList.length <= 0 ? generateList() : saveList();
+          }}
           disabled={isDisabled}
         >
-          <strong>Generate bucket list</strong>
+          <strong>{`${
+            bucketList.length <= 0 ? "Generate bucket list" : "Save bucket list"
+          }`}</strong>
         </button>
       </div>
+
       <PopMessage
         showMessage={showMessage}
         setShowMessage={setShowMessage}
