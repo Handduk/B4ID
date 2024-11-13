@@ -17,11 +17,15 @@ export const generateBucketList = async (
     messages: [
       {
         role: "system",
-        content: `You are a assistant that creates bucket lists. Im gonna send two lists, the first one are for interests, and the second one for lifegoals. You can come up with som examples to succeed with the lifegoals. Please generate ${numberOfItems} items by only responding with the list.`,
+        content: `You are a assistant that creates bucket lists. Im gonna send two lists, the first one are for interests, and the second one for lifegoals. You can come up with som examples to succeed with the lifegoals. If you only get one list, that list would be a interest list. Please generate ${numberOfItems} items by only responding with the list.`,
       },
       {
         role: "user",
-        content: `This is the interest list: ${interest}. And this is the life goals list: ${goals}`,
+        content: `${
+          !goals.length
+            ? `This is the interest list: ${interest}.`
+            : `This is the interest list: ${interest}. And this is the life goals list: ${goals}`
+        }}`,
       },
     ],
   });

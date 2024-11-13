@@ -81,10 +81,12 @@ export const ProfilePage = () => {
 
   return (
     <div className="h-[calc(100vh-4rem)] w-screen bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-200 flex flex-col items-center">
-      <div className="h-3/5 w-4/5 mt-16 flex flex-row space-x-6">
-        <span className="h-full w-2/3 bg-neutral-50 dark:bg-neutral-900 rounded-xl shadow-lg">
-          <div className="w-full h-24 bg-neutral-300 dark:bg-neutral-700 rounded-t-xl shadow-md flex justify-center items-center">
-            <header className="text-3xl">Profile information</header>
+      <div className="h-3/5 w-4/5 mt-16 flex flex-row space-x-6 max-laptop:h-full max-laptop:w-full max-laptop:flex-col max-laptop:space-x-0 max-tablet:mt-0 transition-all duration-300">
+        <span className="h-full w-2/3 bg-neutral-50 dark:bg-neutral-900 rounded-xl shadow-lg max-laptop:w-full max-laptop:mb-4 max-tablet:rounded-none">
+          <div className="w-full h-24 bg-neutral-300 dark:bg-neutral-700 rounded-t-xl shadow-md flex justify-center items-center max-tablet:rounded-none max-tablet:justify-end">
+            <header className="text-3xl max-tablet:text-2xl max-tablet:me-10">
+              Profile information
+            </header>
           </div>
           <div className="px-5">
             <div className="-mt-20 w-28 h-28 bg-white rounded-full shadow-sm">
@@ -93,7 +95,7 @@ export const ProfilePage = () => {
           </div>
           <div className="h-[calc(100%-8rem)] w-full rounded-b-xl">
             <div className="h-full w-full px-9 flex flex-col justify-between">
-              <div className="h-fit w-1/2 py-8 flex flex-col text-neutral-900 dark:text-neutral-200">
+              <div className="h-fit w-1/2 py-8 flex flex-col text-neutral-900 dark:text-neutral-200 max-tablet:w-full transition-all duration-300">
                 <div className="w-full space-y-1 mb-2">
                   <p className="ms-1">Name:</p>
                   <input
@@ -141,9 +143,11 @@ export const ProfilePage = () => {
             </div>
           </div>
         </span>
-        <span className="h-full w-1/3 bg-neutral-50 dark:bg-neutral-900 rounded-xl shadow-lg">
-          <div className="w-full h-24 bg-neutral-300 dark:bg-neutral-700 rounded-t-xl shadow-md flex items-center">
-            <header className="text-3xl ps-6">Stats</header>
+        <span className="h-full w-1/3 bg-neutral-50 dark:bg-neutral-900 rounded-xl shadow-lg max-laptop:w-full max-tablet:rounded-none">
+          <div className="w-full h-24 bg-neutral-300 dark:bg-neutral-700 rounded-t-xl shadow-md flex items-center max-tablet:rounded-none max-tablet:justify-center">
+            <header className="text-3xl ps-6 max-tablet:text-2xl max-tablet:ps-0">
+              Stats
+            </header>
           </div>
           <div className="h-[calc(100%-6rem)] w-full rounded-b-xl">
             <div className="h-full w-full px-9 py-5 flex flex-col space-y-3">
