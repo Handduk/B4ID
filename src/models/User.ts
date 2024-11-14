@@ -5,5 +5,6 @@ export type User = {
     mail: string,
     regDate: Date,
     blCreated: number,
-    blCompleted: number
+    blCompleted: number,
+    itemsCompleted: number
 }
