@@ -4,6 +4,7 @@ import { Item } from "../../models/Item";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { CgArrowsExchange } from "react-icons/cg";
 import { handleMessageDisplay, PopMessage } from "../../components/PopMessage";
+import { addListToDb, getListFromDb } from "../../services/db";
 
 export const InterestList: string[] = [
   "Archery",
@@ -178,8 +179,11 @@ export const SetupPage = () => {
     setIsDisabled(false);
   };
 
-  const saveList = () => {
-    console.log("list saved");
+  const saveList = async () => {
+    const lists = await getListFromDb();
+    if (lists) {
+      addListToDb("test22", lists.length, bucketList);
+    }
   };
 
   const isDone = (item: Item) => {

@@ -10,6 +10,7 @@ export const ProfilePage = () => {
     regDate: new Date(2021, 11, 12),
     blCreated: 2,
     blCompleted: 0,
+    itemsCompleted: 4,
   };
   const [user, setUser] = useState<User>(ogUser);
   const [isEdited, setIsEdited] = useState<boolean>(true);
@@ -168,6 +169,9 @@ export const ProfilePage = () => {
               </p>
               <p>
                 <b>Bucket lists created:</b> {user.blCreated}
+              </p>
+              <p>
+                <b>Items completed:</b> {user.itemsCompleted}
               </p>
               <p>
                 <b>Bucket lists completed:</b> {user.blCompleted}
