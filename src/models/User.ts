@@ -1,8 +1,8 @@
 export type User = {
-    id: number,
+    id: string,
     name: string,
     birth: Date,
-    mail: string,
+    email: string,
     regDate: Date,
     blCreated: number,
     blCompleted: number,

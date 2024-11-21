@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { LandingPage } from "./views/landingPage/LandingPage";
 import { LoginPage } from "./views/loginPage/LoginPage";
 import { ProfilePage } from "./views/profilePage/ProfilePage";
@@ -6,7 +6,7 @@ import { SetupPage } from "./views/setupPage/SetupPage";
 
 export const Pageroutes = () => {
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -14,6 +14,6 @@ export const Pageroutes = () => {
         <Route path="/setup" element={<SetupPage />} />
         <Route />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 };
