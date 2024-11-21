@@ -1,11 +1,14 @@
 import { Navbar } from "./components/Navbar";
+import { UserProvider } from "./context/UserContext";
 import { Pageroutes } from "./Pageroutes";
 
 export const App = () => {
   return (
     <>
-      <Navbar />
-      <Pageroutes />
+      <UserProvider>
+        <Navbar />
+        <Pageroutes />
+      </UserProvider>
     </>
   );
 };
